@@ -1,28 +1,41 @@
-import {Component} from '@angular/core';
-import {Card} from "./card/card.model";
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
+
+import { Card } from './card/card.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   card?: Card;
   title: string = 'designCardChallenge';
+  rand = Math.floor((Math.random() * 100) % 25) + 30;
 
-  constructor() {
-    this.card = {
-      image: 'https://picsum.photos/300/400',
-      title: 'TEST',
-      subTitle: 'Testing Cool',
-      shortDescription: 'Lorem ipsum dolor sit amet, consectetur ' +
-        'adipisicing elit. Amet, aut cum cumque cupiditate dolorum' +
-        ' ducimus eius facilis ipsam libero magnam maxime porro ' +
-        'provident quidem rerum, tenetur vel voluptate voluptates?' +
-        ' A.Lorem ipsum dolor sit amet, consectetur adipisicing ' +
-        'elit. Amet, aut cum cumque cupiditate dolorum ducimus ' +
-        'eius facilis ipsam libero magnam maxime porro provident ' +
-        'quidem rerum, tenetur vel voluptate voluptates? A.',
-    };
+  constructor(private http: HttpClient) {}
+  ngOnInit() {
+    forkJoin([this.loadCard(this.rand), this.loadPhoto(this.rand)]).subscribe(
+      ([card, photo]: any) => {
+        this.card = {
+          image: photo.url,
+          title: card.title,
+          subTitle: '',
+          shortDescription: card.body + card.body,
+        };
+      }
+    );
+  }
+
+  loadCard(id: number) {
+    const urlPost = 'https://jsonplaceholder.typicode.com/posts/';
+
+    return this.http.get(urlPost + id);
+  }
+  loadPhoto(id: number) {
+    const urlPost = 'https://jsonplaceholder.typicode.com/photos/';
+
+    return this.http.get(urlPost + id);
   }
 }
