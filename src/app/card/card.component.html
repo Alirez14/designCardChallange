@@ -1,3 +1,39 @@
-<div>
-  <!-- <img src="{{ cardData.image }}" alt="" /> -->
+<div class="card">
+  <div [class]="{'card--image':true}">
+    <img [src]="imageUrl" height="300" width="400" alt="">
+  </div>
+
+  <div class="card--body">
+    <div class="circles">
+      <div class="circle-1"></div>
+      <div class="circle-2"></div>
+      <div class="circle-3"></div>
+    </div>
+
+    <h2 class="card--title">
+      {{title}}
+    </h2>
+
+    <span class="card--sub-title">
+      {{subTitle}}
+    </span>
+
+    <p class="card--short-description">
+      {{ (shortDescription && shortDescription.length > 250 && !isOpen) ?
+      (shortDescription | slice:0:250) + '...' : (shortDescription) }}
+    </p>
+
+  </div>
+
+  <div class="card--footer">
+
+    <button (click)="openDescription()">
+      {{(isOpen) ? "close" : "open"}}
+    </button>
+    <div class="more">
+      <img src="assets/shareIcon.svg" height="16" alt="">
+      <img src="assets/more-vertical-angular.svg" height="16" alt="">
+    </div>
+
+  </div>
 </div>

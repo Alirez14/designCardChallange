@@ -1,16 +1,25 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { card } from './card';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
 })
-export class CardComponent implements OnInit {
-  @Input() cardData?: card;
-  
+export class CardComponent {
+  @Input() title?: string;
 
-  constructor() {}
+  @Input() subTitle?: string;
+  @Input() shortDescription?: string;
+  @Input() imageUrl?: string;
 
-  ngOnInit(): void {}
+  isOpen: boolean;
+
+  constructor() {
+    this.isOpen = false;
+  }
+
+
+  openDescription() {
+    this.isOpen = !this.isOpen;
+  }
 }

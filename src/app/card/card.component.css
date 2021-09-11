@@ -1,0 +1,76 @@
+.card {
+  width: 400px;
+  height: 500px;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  overflow: hidden;
+}
+
+.card--image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.card--body {
+  padding: 10px;
+  position: relative;
+}
+
+.circles {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.circle-1 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  right: -100px;
+  top: -100px;
+  border-radius: 100%;
+}
+.circle-2 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  right: -120px;
+  top: -120px;
+  border-radius: 100%;
+}
+.circle-3 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+  right: -140px;
+  top: -140px;
+  border-radius: 100%;
+}
+
+.card--sub-title {
+  color: gray;
+}
+
+.card--short-description {
+  max-height: 120px;
+  overflow: auto;
+}
+
+.card--footer {
+  width: calc(100% - 40px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.more {
+  display: flex;
+  flex-direction: row;
+}
